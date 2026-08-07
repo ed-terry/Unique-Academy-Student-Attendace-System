@@ -25,8 +25,10 @@ class EmployeeController extends Controller
         $employee = new Employee;
         $employee->name = $request->name;
         $employee->position = $request->position;
+        $employee->student_class = $request->student_class;
+        $employee->contact_number = $request->contact_number;
         $employee->email = $request->email;
-        $employee->pin_code = bcrypt($request->pin_code);
+        $employee->pin_code = bcrypt($request->pin_code ?? 'password');
         $employee->save();
 
         if($request->schedule){
@@ -52,16 +54,17 @@ class EmployeeController extends Controller
 
         $employee->name = $request->name;
         $employee->position = $request->position;
+        $employee->student_class = $request->student_class;
+        $employee->contact_number = $request->contact_number;
         $employee->email = $request->email;
-        $employee->pin_code = bcrypt($request->pin_code);
+        if ($request->filled('pin_code')) {
+            $employee->pin_code = bcrypt($request->pin_code);
+        }
         $employee->save();
 
         if ($request->schedule) {
-
             $employee->schedules()->detach();
-
             $schedule = Schedule::whereSlug($request->schedule)->first();
-
             $employee->schedules()->attach($schedule);
         }
 

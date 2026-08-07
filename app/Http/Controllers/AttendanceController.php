@@ -6,18 +6,41 @@ use DateTime;
 use App\Models\Employee;
 use App\Models\Latetime;
 use App\Models\Attendance;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\AttendanceEmp;
 
 class AttendanceController extends Controller
 {   
-    //show attendance 
-    public function index()
-    {  
-        return view('admin.attendance')->with(['attendances' => Attendance::all()]);
+    public function index(Request $request)
+    {
+        $query = Attendance::with('employee');
+
+        if ($request->filled('search')) {
+            $search = $request->input('search');
+            $query->whereHas('employee', function ($subquery) use ($search) {
+                $subquery->where('name', 'like', "%{$search}%")
+                    ->orWhere('email', 'like', "%{$search}%")
+                    ->orWhere('student_class', 'like', "%{$search}%");
+            })->orWhere('emp_id', $search);
+        }
+
+        if ($request->filled('attendance_date')) {
+            $query->where('attendance_date', $request->input('attendance_date'));
+        }
+
+        $attendances = $query->orderBy('attendance_date', 'desc')->get();
+        $summary = [
+            'total_records' => $attendances->count(),
+            'present' => $attendances->where('status', 1)->count(),
+            'late' => $attendances->where('status', 0)->count(),
+            'attendance_percentage' => $attendances->count() ? round(($attendances->where('status', 1)->count() / $attendances->count()) * 100, 2) : 0,
+            'weekly_records' => Attendance::whereBetween('attendance_date', [now()->subDays(6)->format('Y-m-d'), now()->format('Y-m-d')])->count(),
+        ];
+
+        return view('admin.attendance')->with(['attendances' => $attendances, 'summary' => $summary]);
     }
 
-    //show late times
     public function indexLatetime()
     {
         return view('admin.latetime')->with(['latetimes' => Latetime::all()]);

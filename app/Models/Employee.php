@@ -10,13 +10,9 @@ class Employee extends Model
 {
     use HasFactory, Notifiable;
     
-    public function getRouteKeyName()
-    {
-        return 'name';
-    }
     protected $table = 'employees';
     protected $fillable = [
-        'name', 'email', 'pin_code'
+        'name', 'email', 'pin_code', 'position', 'student_class', 'contact_number'
     ];
 
   
@@ -49,6 +45,10 @@ class Employee extends Model
     public function schedules()
     {
         return $this->belongsToMany('App\Models\Schedule', 'schedule_employees', 'emp_id', 'schedule_id');
+    }
+    public function classroom()
+    {
+        return $this->belongsTo(Classroom::class, 'classroom_id');
     }
 
 

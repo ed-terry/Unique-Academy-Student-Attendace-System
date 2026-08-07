@@ -5,11 +5,11 @@
 
 @section('breadcrumb')
 <div class="col-sm-6">
-    <h4 class="page-title text-left">Employees</h4>
+    <h4 class="page-title text-left">Students</h4>
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="javascript:void(0);">Home</a></li>
-        <li class="breadcrumb-item"><a href="javascript:void(0);">Employees</a></li>
-        <li class="breadcrumb-item"><a href="javascript:void(0);">Employees List</a></li>
+        <li class="breadcrumb-item"><a href="javascript:void(0);">Students</a></li>
+        <li class="breadcrumb-item"><a href="javascript:void(0);">Student List</a></li>
   
     </ol>
 </div>
@@ -43,14 +43,14 @@
                                         
                                                     <thead>
                                                     <tr>
-                                                        <th data-priority="1">Employee ID</th>
+                                                        <th data-priority="1">Student ID</th>
                                                         <th data-priority="2">Name</th>
-                                                        <th data-priority="3">position</th>
-                                                        <th data-priority="4">Email</th>
-                                                        <th data-priority="5">Schedule</th>
-                                                        <th data-priority="6">Member Since</th>
-                                                        <th data-priority="7">Actions</th>
-                                                     
+                                                        <th data-priority="3">Class</th>
+                                                        <th data-priority="4">Contact</th>
+                                                        <th data-priority="5">Email</th>
+                                                        <th data-priority="6">Schedule</th>
+                                                        <th data-priority="7">Member Since</th>
+                                                        <th data-priority="8">Actions</th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
@@ -59,7 +59,8 @@
                                                         <tr>
                                                             <td>{{$employee->id}}</td>
                                                             <td>{{$employee->name}}</td>
-                                                            <td>{{$employee->position}}</td>
+                                                            <td>{{$employee->student_class}}</td>
+                                                            <td>{{$employee->contact_number}}</td>
                                                             <td>{{$employee->email}}</td>
                                                             <td>
                                                                 @if(isset($employee->schedules->first()->slug))
@@ -68,9 +69,8 @@
                                                             </td>
                                                             <td>{{$employee->created_at}}</td>
                                                             <td>
-                        
-                                                                <a href="#edit{{$employee->name}}" data-toggle="modal" class="btn btn-success btn-sm edit btn-flat"><i class='fa fa-edit'></i> Edit</a>
-                                                                <a href="#delete{{$employee->name}}" data-toggle="modal" class="btn btn-danger btn-sm delete btn-flat"><i class='fa fa-trash'></i> Delete</a>
+                                                                <a href="#edit{{ $employee->id }}" data-toggle="modal" class="btn btn-success btn-sm edit btn-flat"><i class='fa fa-edit'></i> Edit</a>
+                                                                <a href="#delete{{ $employee->id }}" data-toggle="modal" class="btn btn-danger btn-sm delete btn-flat"><i class='fa fa-trash'></i> Delete</a>
                                                             </td>
                                                         </tr>
                                                         @endforeach

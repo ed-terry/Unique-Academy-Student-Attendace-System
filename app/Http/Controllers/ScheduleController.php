@@ -10,10 +10,7 @@ class ScheduleController extends Controller
    
     public function index()
     {
-     
         return view('admin.schedule')->with('schedules', Schedule::all());
-        flash()->success('Success','Schedule has been created successfully !');
-
     }
 
 
@@ -21,14 +18,13 @@ class ScheduleController extends Controller
     {
         $request->validated();
 
-        $schedule = new schedule;
+        $schedule = new Schedule;
         $schedule->slug = $request->slug;
+        $schedule->subject_name = $request->subject_name;
+        $schedule->teacher_name = $request->teacher_name;
         $schedule->time_in = $request->time_in;
         $schedule->time_out = $request->time_out;
         $schedule->save();
-
-
-
 
         flash()->success('Success','Schedule has been created successfully !');
         return redirect()->route('schedule.index');
@@ -43,13 +39,13 @@ class ScheduleController extends Controller
         $request->validated();
 
         $schedule->slug = $request->slug;
+        $schedule->subject_name = $request->subject_name;
+        $schedule->teacher_name = $request->teacher_name;
         $schedule->time_in = $request->time_in;
         $schedule->time_out = $request->time_out;
         $schedule->save();
         flash()->success('Success','Schedule has been Updated successfully !');
         return redirect()->route('schedule.index');
-
-
     }
 
   

@@ -18,10 +18,6 @@
     </div>
 @endsection
 @section('button')
-    <a href="leave/assign" class="btn btn-primary btn-sm btn-flat"><i
-            class="mdi mdi-plus mr-2"></i>Add New</a>
-
-
 @endsection
 
 @section('content')

@@ -21,32 +21,32 @@
                                 required />
                         </div>
                         <div class="form-group">
-                            <label for="position">Position</label>
-                            <input type="text" class="form-control" placeholder="Enter Employee Name" id="position" name="position"
+                            <label for="position">Student Level</label>
+                            <input type="text" class="form-control" placeholder="Enter student level or grade" id="position" name="position"
                                 required />
                         </div>
-
-                        
+                        <div class="form-group">
+                            <label for="student_class">Class</label>
+                            <input type="text" class="form-control" placeholder="Enter class name" id="student_class" name="student_class"
+                                required />
+                        </div>
+                        <div class="form-group">
+                            <label for="contact_number">Contact Number</label>
+                            <input type="text" class="form-control" placeholder="Enter phone number" id="contact_number" name="contact_number" />
+                        </div>
                         <div class="form-group">
                             <label for="email" class="col-sm-3 control-label">Email</label>
-
-
                             <input type="email" class="form-control" id="email" name="email">
-
                         </div>
                         <div class="form-group">
                             <label for="schedule" class="col-sm-3 control-label">Schedule</label>
-
-
                             <select class="form-control" id="schedule" name="schedule" required>
                                 <option value="" selected>- Select -</option>
                                 @foreach($schedules as $schedule)
                                 <option value="{{$schedule->slug}}">{{$schedule->slug}} -> from {{$schedule->time_in}}
-                                    to {{$schedule->time_out}} </option>
+                                    to {{$schedule->time_out}}</option>
                                 @endforeach
-
                             </select>
-
                         </div>
 
                         <div class="form-group">

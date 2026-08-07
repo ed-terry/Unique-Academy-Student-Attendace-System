@@ -1,15 +1,13 @@
    <!-- Top Bar Start -->
    <div class="topbar">
 
-<!-- LOGO -->
+<!-- Brand Title -->
 <div class="topbar-left">
-    <a href="/" class="logo">
-        <span>
-                <h1 style="color: white; ">AMS</h1>
-            </span>
-        <i>
-            <h1>A</h1>
-            </i>
+    <a href="/" class="logo d-flex align-items-center" style="min-width: 220px; padding-left: 4px;">
+        <div class="text-white d-flex flex-column justify-content-center" style="line-height: 1.15;">
+            <strong style="font-size: 16px; letter-spacing: 0.03em; font-weight: 700; font-family: 'Segoe UI', Arial, sans-serif;">Unique Academy</strong>
+            <small style="font-size: 12px; opacity: 0.95; font-weight: 500; margin-top: 1px;">Student Attendance</small>
+        </div>
     </a>
 </div>
 

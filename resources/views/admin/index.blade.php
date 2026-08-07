@@ -6,11 +6,15 @@
 @endsection
 
 @section('breadcrumb')
-<div class="col-sm-6 text-left" >
-     <h4 class="page-title">Dashboard</h4>
-     <ol class="breadcrumb">
-         <li class="breadcrumb-item active">Welcome to Attendance Management System</li>
-     </ol>
+<div class="col-sm-6 text-left">
+    <div class="d-flex flex-column align-items-start justify-content-center py-1">
+        <h2 class="page-title mb-1 font-weight-bold" style="font-size: 1.75rem; letter-spacing: 0.02em; color: #2c3e50; font-family: 'Segoe UI', Arial, sans-serif;">
+            Dashboard
+        </h2>
+        <ol class="breadcrumb mb-0 p-0 bg-transparent" style="font-size: 0.95rem; color: #6c757d;">
+            <li class="breadcrumb-item active" aria-current="page" style="font-weight: 500;">Welcome to Unique Academy Attendance</li>
+        </ol>
+    </div>
 </div>
 @endsection
 
@@ -23,7 +27,7 @@
                                             <div class="float-left mini-stat-img mr-4">
                                                 <span class="ti-id-badge" style="font-size: 20px"></span>
                                             </div>
-                                            <h5 class="font-16 text-uppercase mt-0 text-white-50">Total <br> Employees</h5>
+                                            <h5 class="font-16 text-uppercase mt-0 text-white-50">Total <br> Students</h5>
                                             <h4 class="font-500">{{$data[0]}} </h4>
                                             <span class="ti-user" style="font-size: 71px"></span>
                                               
@@ -106,100 +110,6 @@
                         </div>
                         <!-- end row -->
 
-                        <div class="row">
-                            <div class="col-xl-9">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="mt-0 header-title mb-5">Monthly Report</h4>
-                                        <div class="row">
-                                            <div class="col-lg-7">
-                                                <div>
-                                                    <div id="chart-with-area" class="ct-chart earning ct-golden-section"></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-5">
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="text-center">
-                                                            <p class="text-muted mb-4">This month</p>
-                                                            <h4>124</h4>
-                                                            <p class="text-muted mb-5">It will be as simple as in fact it will be occidental.</p>
-                                                            <span class="peity-donut" data-peity='{ "fill": ["#02a499", "#f2f2f2"], "innerRadius": 28, "radius": 32 }' data-width="72" data-height="72">{{$data[3]}}/{{count($data)}}</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="text-center">
-                                                            <p class="text-muted mb-4">Last month</p>
-                                                            <h4>200</h4>
-                                                            <p class="text-muted mb-5">It will be as simple as in fact it will be occidental.</p>
-                                                            <span class="peity-donut" data-peity='{ "fill": ["#02a499", "#f2f2f2"], "innerRadius": 28, "radius": 32 }' data-width="72" data-height="72">3/5</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- end row -->
-                                    </div>
-                                </div>
-                                <!-- end card -->
-                            </div>
-
-                            <div class="col-xl-3">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div>
-                                            <h4 class="mt-0 header-title mb-4">Sales Analytics</h4>
-                                        </div>
-                                        <div class="wid-peity mb-4">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div>
-                                                        <p class="text-muted">Online</p>
-                                                        <h5 class="mb-4">1,542</h5>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="mb-4">
-                                                        <span class="peity-line" data-width="100%" data-peity='{ "fill": ["rgba(2, 164, 153,0.3)"],"stroke": ["rgba(2, 164, 153,0.8)"]}' data-height="60">6,2,8,4,3,8,1,3,6,5,9,2,8,1,4,8,9,8,2,1</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="wid-peity mb-4">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div>
-                                                        <p class="text-muted">Offline</p>
-                                                        <h5 class="mb-4">6,451</h5>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="mb-4">
-                                                        <span class="peity-line" data-width="100%" data-peity='{ "fill": ["rgba(2, 164, 153,0.3)"],"stroke": ["rgba(2, 164, 153,0.8)"]}' data-height="60">6,2,8,4,-3,8,1,-3,6,-5,9,2,-8,1,4,8,9,8,2,1</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div>
-                                                        <p class="text-muted">Marketing</p>
-                                                        <h5>84,574</h5>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="mb-4">
-                                                        <span class="peity-line" data-width="100%" data-peity='{ "fill": ["rgba(2, 164, 153,0.3)"],"stroke": ["rgba(2, 164, 153,0.8)"]}' data-height="60">6,2,8,4,3,8,1,3,6,5,9,2,8,1,4,8,9,8,2,1</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <!-- end row -->
                         
                         

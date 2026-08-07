@@ -17,11 +17,44 @@
     </div>
 @endsection
 @section('button')
-    <a href="attendance/assign" class="btn btn-primary btn-sm btn-flat"><i class="mdi mdi-plus mr-2"></i>Add New</a>
 @endsection
 
 @section('content')
 @include('includes.flash')
+
+<div class="row mb-3">
+    <div class="col-md-8">
+        <form method="GET" action="{{ route('attendance') }}" class="form-inline">
+            <div class="form-group mr-2">
+                <input type="text" name="search" class="form-control" placeholder="Search student or class" value="{{ request('search') }}">
+            </div>
+            <div class="form-group mr-2">
+                <input type="date" name="attendance_date" class="form-control" value="{{ request('attendance_date') }}">
+            </div>
+            <button type="submit" class="btn btn-primary">Filter</button>
+        </form>
+    </div>
+    <div class="col-md-4 text-right">
+        <div class="card p-3">
+            <div class="d-flex justify-content-between">
+                <span>Total Records</span>
+                <strong>{{ $summary['total_records'] ?? 0 }}</strong>
+            </div>
+            <div class="d-flex justify-content-between">
+                <span>Present</span>
+                <strong>{{ $summary['present'] ?? 0 }}</strong>
+            </div>
+            <div class="d-flex justify-content-between">
+                <span>Late</span>
+                <strong>{{ $summary['late'] ?? 0 }}</strong>
+            </div>
+            <div class="d-flex justify-content-between">
+                <span>Attendance %</span>
+                <strong>{{ $summary['attendance_percentage'] ?? 0 }}%</strong>
+            </div>
+        </div>
+    </div>
+</div>
 
     <div class="row">
         <div class="col-12">
@@ -35,14 +68,12 @@
                                 <thead>
                                     <tr>
                                         <th data-priority="1">Date</th>
-                                        <th data-priority="2">Employee ID</th>
+                                        <th data-priority="2">Student ID</th>
                                         <th data-priority="3">Name</th>
-                                        <th data-priority="4">Attendance</th>
-
+                                        <th data-priority="4">Class</th>
+                                        <th data-priority="5">Attendance</th>
                                         <th data-priority="6">Time In</th>
                                         <th data-priority="7">Time Out</th>
-
-
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -53,6 +84,7 @@
                                             <td>{{ $attendance->attendance_date }}</td>
                                             <td>{{ $attendance->emp_id }}</td>
                                             <td>{{ $attendance->employee->name }}</td>
+                                            <td>{{ $attendance->employee->student_class }}</td>
                                             <td>{{ $attendance->attendance_time }}
                                                 @if ($attendance->status == 1)
                                                     <span class="badge badge-primary badge-pill float-right">On Time</span>
@@ -61,12 +93,11 @@
                                                 @endif
                                             </td>
 
-                                            <td>{{ $attendance->employee->schedules->first()->time_in }} </td>
-                                            <td>{{ $attendance->employee->schedules->first()->time_out }}</td>
+                                            <td>{{ optional($attendance->employee->schedules->first())->time_in }}</td>
+                                            <td>{{ optional($attendance->employee->schedules->first())->time_out }}</td>
                                         </tr>
 
                                     @endforeach
-
 
                                 </tbody>
                             </table>

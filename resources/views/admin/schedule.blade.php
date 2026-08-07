@@ -50,12 +50,12 @@
                                 <thead>
                                     <tr>
                                         <th data-priority="1">ID</th>
-                                        <th data-priority="2">Shift</th>
-                                        <th data-priority="3">Time In</th>
-                                        <th data-priority="4">Time Out</th>
-                                        <th data-priority="5">Action</th>
-                                     
-
+                                        <th data-priority="2">Schedule</th>
+                                        <th data-priority="3">Subject</th>
+                                        <th data-priority="4">Teacher</th>
+                                        <th data-priority="5">Time In</th>
+                                        <th data-priority="6">Time Out</th>
+                                        <th data-priority="7">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -63,9 +63,8 @@
                                         <tr>
                                             <td> {{ $schedule->id }} </td>
                                             <td> {{ $schedule->slug }} </td>
-                                            <td> {{ $schedule->time_in }} </td>
-                                            <td> {{ $schedule->time_out }} </td>
-                                            <td>
+                                            <td> {{ $schedule->subject_name }} </td>
+                                            <td> {{ $schedule->teacher_name }} </td>
 
                                                 <a href="#edit{{ $schedule->slug }}" data-toggle="modal"
                                                     class="btn btn-success btn-sm edit btn-flat"><i class='fa fa-edit'></i>

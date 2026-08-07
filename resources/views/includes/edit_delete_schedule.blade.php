@@ -14,34 +14,24 @@
                     <input type="hidden" name="_method" value="PUT">
 
                     <div class="form-group">
-                        <label for="name" class="col-sm-3 control-label">Name</label>
-
-
-                        <div class="bootstrap-timepicker">
-                            <input type="text" class="form-control timepicker" id="name" name="slug"
-                                value="{{ $schedule->slug }}">
-                        </div>
-
+                        <label for="slug" class="col-sm-3 control-label">Schedule Name</label>
+                        <input type="text" class="form-control" id="slug" name="slug" value="{{ $schedule->slug }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject_name" class="col-sm-3 control-label">Subject</label>
+                        <input type="text" class="form-control" id="subject_name" name="subject_name" value="{{ $schedule->subject_name }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="teacher_name" class="col-sm-3 control-label">Teacher</label>
+                        <input type="text" class="form-control" id="teacher_name" name="teacher_name" value="{{ $schedule->teacher_name }}">
                     </div>
                     <div class="form-group">
                         <label for="edit_time_in" class="col-sm-3 control-label">Time In</label>
-
-
-                        <div class="bootstrap-timepicker">
-                            <input type="time" class="form-control timepicker" id="edit_time_in" name="time_in"
-                                value="{{ $schedule->time_in }}">
-                        </div>
-
+                        <input type="time" class="form-control" id="edit_time_in" name="time_in" value="{{ $schedule->time_in }}">
                     </div>
                     <div class="form-group">
                         <label for="edit_time_out" class="col-sm-3 control-label">Time out</label>
-
-
-                        <div class="bootstrap-timepicker">
-                            <input type="time" class="form-control timepicker" id="edit_time_out" name="time_out"
-                                value="{{ $schedule->time_out }}">
-                        </div>
-
+                        <input type="time" class="form-control" id="edit_time_out" name="time_out" value="{{ $schedule->time_out }}">
                     </div>
             </div>
             <div class="modal-footer">

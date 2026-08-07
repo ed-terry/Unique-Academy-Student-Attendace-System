@@ -25,6 +25,8 @@ class ScheduleEmp extends FormRequest
     {
         return [
             'slug' => 'required|string|min:3|max:32|alpha_dash',
+            'subject_name' => 'required|string|min:3|max:128',
+            'teacher_name' => 'required|string|min:3|max:128',
             'time_in' => 'required|date_format:H:i|before:time_out',
             'time_out' => 'required|date_format:H:i',
         ];

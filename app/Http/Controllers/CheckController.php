@@ -16,61 +16,28 @@ class CheckController extends Controller
 
     public function CheckStore(Request $request)
     {
-        if (isset($request->attd)) {
-            foreach ($request->attd as $keys => $values) {
-                foreach ($values as $key => $value) {
-                    if ($employee = Employee::whereId(request('emp_id'))->first()) {
-                        if (
-                            !Attendance::whereAttendance_date($keys)
-                                ->whereEmp_id($key)
-                                ->whereType(0)
-                                ->first()
-                        ) {
-                            $data = new Attendance();
-                            
-                            $data->emp_id = $key;
-                            $emp_req = Employee::whereId($data->emp_id)->first();
-                            $data->attendance_time = date('H:i:s', strtotime($emp_req->schedules->first()->time_in));
-                            $data->attendance_date = $keys;
-                            
-                            // $emps = date('H:i:s', strtotime($employee->schedules->first()->time_in));
-                            // if (!($emps >= $data->attendance_time)) {
-                            //     $data->status = 0;
-                           
-                            // }
-                            $data->save();
-                        }
-                    }
+        $date = $request->input('date', today()->format('Y-m-d'));
+
+        if ($request->filled('attendance')) {
+            foreach ($request->input('attendance') as $employeeId => $status) {
+                $employee = Employee::find($employeeId);
+                if (! $employee) {
+                    continue;
                 }
+
+                $attendance = Attendance::firstOrNew([
+                    'emp_id' => $employeeId,
+                    'attendance_date' => $date,
+                    'type' => 0,
+                ]);
+
+                $attendance->attendance_time = $employee->schedules->first()->time_in ?? date('H:i:s');
+                $attendance->status = $status === 'present' ? 1 : ($status === 'late' ? 0 : 0);
+                $attendance->save();
             }
         }
-        if (isset($request->leave)) {
-            foreach ($request->leave as $keys => $values) {
-                foreach ($values as $key => $value) {
-                    if ($employee = Employee::whereId(request('emp_id'))->first()) {
-                        if (
-                            !Leave::whereLeave_date($keys)
-                                ->whereEmp_id($key)
-                                ->whereType(1)
-                                ->first()
-                        ) {
-                            $data = new Leave();
-                            $data->emp_id = $key;
-                            $emp_req = Employee::whereId($data->emp_id)->first();
-                            $data->leave_time = $emp_req->schedules->first()->time_out;
-                            $data->leave_date = $keys;
-                            // if ($employee->schedules->first()->time_out <= $data->leave_time) {
-                            //     $data->status = 1;
-                                
-                            // }
-                            // 
-                            $data->save();
-                        }
-                    }
-                }
-            }
-        }
-        flash()->success('Success', 'You have successfully submited the attendance !');
+
+        flash()->success('Success', 'Attendance has been recorded successfully!');
         return back();
     }
     public function sheetReport()

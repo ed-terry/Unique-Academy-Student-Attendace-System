@@ -17,15 +17,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $user= User::create([
-            'name' => 'Admin',
-            'email' => 'admin@ams.com',
-            'password' => Hash::make('admin@ams.com'),
+        $user = User::create([
+            'name' => 'Unique Academy Admin',
+            'email' => 'admin@uniqueacademy.local',
+            'password' => Hash::make('password123'),
         ]);
+
         $role = Role::create([
             'slug' => 'admin',
-            'name' => 'Adminstrator',
+            'name' => 'Administrator',
         ]);
-        $user->roles()->sync($role->id);
+
+        $user->roles()->sync([$role->id]);
     }
 }

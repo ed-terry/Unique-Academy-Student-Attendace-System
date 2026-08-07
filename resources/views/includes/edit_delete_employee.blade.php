@@ -1,5 +1,5 @@
 <!-- Edit -->
-<div class="modal fade" id="edit{{ $employee->name }}">
+<div class="modal fade" id="edit{{ $employee->id }}">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -9,48 +9,42 @@
             </div>
             <h4 class="modal-title"><b><span class="employee_id">Edit Employee</span></b></h4>
             <div class="modal-body text-left">
-                <form class="form-horizontal" method="POST" action="{{ route('employees.update', $employee->name) }}">
+                <form class="form-horizontal" method="POST" action="{{ route('employees.update', $employee->id) }}">
                     @csrf
                     <input type="hidden" name="_method" value="PUT">
                     <div class="form-group">
                         <label for="name" class="col-sm-3 control-label">Name</label>
-
-
                         <input type="text" class="form-control" id="name" name="name" value="{{ $employee->name }}"
                             required>
-
                     </div>
                     <div class="form-group">
-                        <label for="name" class="col-sm-3 control-label">Position</label>
-
-
+                        <label for="position" class="col-sm-3 control-label">Student Level</label>
                         <input type="text" class="form-control" id="position" name="position" value="{{ $employee->position }}"
                             required>
-
                     </div>
-                 
-                  
+                    <div class="form-group">
+                        <label for="student_class" class="col-sm-3 control-label">Class</label>
+                        <input type="text" class="form-control" id="student_class" name="student_class" value="{{ $employee->student_class }}"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact_number" class="col-sm-3 control-label">Contact Number</label>
+                        <input type="text" class="form-control" id="contact_number" name="contact_number" value="{{ $employee->contact_number }}">
+                    </div>
                     <div class="form-group">
                         <label for="email" class="col-sm-3 control-label">Email</label>
-
-
                         <input type="email" class="form-control" id="email" name="email"
                             value="{{ $employee->email }}" >
-
                     </div>
                     <div class="form-group">
                         <label for="schedule" class="col-sm-3 control-label">Schedule</label>
-
-
                         <select class="form-control" id="schedule" name="schedule" required>
                             <option value="" selected>- Select -</option>
                             @foreach ($schedules as $schedule)
-                                <option value="{{ $schedule->slug }}">{{ $schedule->slug }} -> from
+                                <option value="{{ $schedule->slug }}" @if($employee->schedules->first() && $employee->schedules->first()->slug === $schedule->slug) selected @endif>{{ $schedule->slug }} -> from
                                     {{ $schedule->time_in }} to {{ $schedule->time_out }} </option>
                             @endforeach
-
                         </select>
-
                     </div>
 
             </div>
@@ -66,7 +60,7 @@
 </div>
 
 <!-- Delete -->
-<div class="modal fade" id="delete{{ $employee->name }}">
+<div class="modal fade" id="delete{{ $employee->id }}">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header " style="align-items: center">
@@ -75,7 +69,7 @@
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" method="POST" action="{{ route('employees.destroy', $employee->name) }}">
+                <form class="form-horizontal" method="POST" action="{{ route('employees.destroy', $employee->id) }}">
                     @csrf
                     {{ method_field('DELETE') }}
                     <div class="text-center">

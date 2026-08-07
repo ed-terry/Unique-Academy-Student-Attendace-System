@@ -12,31 +12,24 @@
                 <form class="form-horizontal" method="POST" action="{{ route('schedule.store') }}">
                     @csrf
                     <div class="form-group">
-                        <label for="name" class="col-sm-3 control-label">Name</label>
-
-                        
-                            <div class="bootstrap-timepicker">
-                                <input type="text" class="form-control timepicker" id="name" name="slug">
-                            </div>
-                        
+                        <label for="slug" class="col-sm-3 control-label">Schedule Name</label>
+                        <input type="text" class="form-control" id="slug" name="slug" placeholder="e.g. Grade10-Maths" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject_name" class="col-sm-3 control-label">Subject</label>
+                        <input type="text" class="form-control" id="subject_name" name="subject_name" placeholder="e.g. Mathematics" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="teacher_name" class="col-sm-3 control-label">Teacher</label>
+                        <input type="text" class="form-control" id="teacher_name" name="teacher_name" placeholder="e.g. Mr. Banda" required>
                     </div>
                     <div class="form-group">
                         <label for="time_in" class="col-sm-3 control-label">Time In</label>
-
-                        
-                            <div class="bootstrap-timepicker">
-                                <input type="time" class="form-control timepicker" id="time_in" name="time_in" required>
-                            </div>
-                        
+                        <input type="time" class="form-control" id="time_in" name="time_in" required>
                     </div>
                     <div class="form-group">
                         <label for="time_out" class="col-sm-3 control-label">Time Out</label>
-
-                        
-                            <div class="bootstrap-timepicker">
-                                <input type="time" class="form-control timepicker" id="time_out" name="time_out" required>
-                            </div>
-                        
+                        <input type="time" class="form-control" id="time_out" name="time_out" required>
                     </div>
             </div>
             <div class="modal-footer">
